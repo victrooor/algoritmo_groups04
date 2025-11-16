@@ -1,5 +1,7 @@
 # Informe del Trabajo final 
+
 ## Diagrama de clases 
+
 ```mermaid
 classDiagram
 Class01 <|-- AveryLongClass : Cool
