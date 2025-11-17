@@ -162,4 +162,5 @@ decisiones en combate. Su uso debería limitarse al entrenamiento.
     https://doi.org/10.64183/tca0t410\
 -   Vista do *Auxílio da Inteligência Artificial no Controle e Gestão do
     Tráfego Aéreo* (2025). Emnuvens.com.br.
-    https://rbaccia.emnuvens.com.br/revista/article/view/277/329
+    https://rbaccia.emnuvens.com.br/revista/article/view/277/329 
+-   [Presentación en Canva] https://www.canva.com/design/DAGzoebSCvI/C1JF4Dm1UhanT5av7Ybf8A/edit?utm_content=DAGzoebSCvI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
