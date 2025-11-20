@@ -61,9 +61,9 @@ classDiagram
     class GameManager {
         -tiempoRestante
         -vista
-        -int objetivoagua = 50
-        -int objetivopiedra = 50
-        -int objetivoRoca = 5
+        -objetivoagua = 50
+        -objetivopiedra = 50
+        -objetivoRoca = 5
         +iniciativaNegro
         +actualizarTiempo()
         +verificarVictoria()
