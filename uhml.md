@@ -59,11 +59,11 @@ classDiagram
     }
 
     class GameManager {
-        -int tiempoRestante
-        -int vista
-        -int objetinologua = 50
-        -int objetinobedera = 50
-        -int objetineRoca = 5
+        -tiempoRestante
+        -vista
+        -objetivoagua = 50
+        -objetivopiedra = 50
+        -objetivoRoca = 5
         +iniciativaNegro
         +actualizarTiempo()
         +verificarVictoria()
@@ -71,8 +71,8 @@ classDiagram
     }
 
     Mapas "1" *-- "many" Recursos : contains
-    Mapas "1" *-- "many" Personaje: contains
-    Personaje <|-- Jugador : inheritance
+    Mapas "1" *-- "many" Personaje: 
+    Personaje <|-- Jugador : 
     Jugador --> Recursos : recoger
     GameManager "3" *--  Mapas : manages
     GameManager *-- Jugador 
