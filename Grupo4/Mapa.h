@@ -20,12 +20,12 @@ private:
     bool colisionMurcielago,ColisionConFlor, colisionCocodrilo;//Tambien en GameManger y agregar enColisionConDiamante
     //int contadorDiamantes; Esto tambien iria en GameManager
     int contadorFlores;//tambien en GameManager
-    int contadorDaño;//variable que debe usar Anjali en GameManager para mostrar numero de colisiones de daño
+    int contadorDaÃ±o;//variable que debe usar Anjali en GameManager para mostrar numero de colisiones de daÃ±o
 public:
 
    
     Mapa(int x, int y, String^ rutaFondo,PersonajePrincipal^ protagonista)
-        : x(x), y(y), rutaFondo(rutaFondo),contadorDaño(0),contadorFlores(0), colisionMurcielago(false), colisionCocodrilo(false), ColisionConFlor(false)
+        : x(x), y(y), rutaFondo(rutaFondo),contadorDaÃ±o(0),contadorFlores(0), colisionMurcielago(false), colisionCocodrilo(false), ColisionConFlor(false)
     {
         aleatorio = gcnew Random();
         this->protagonista = protagonista;
@@ -52,22 +52,22 @@ public:
         flores->mostrarFlor(gr);
         cocodrilo->seleccionSprite(gr);
     }
-    int Daño() { //esto deberia adaptarse al metodo verificarDerrota de Anjali
+    int DaÃ±o() { //esto deberia adaptarse al metodo verificarDerrota de Anjali
         
         bool col1 = protagonista->colision(antagonista);
         bool col2 = protagonista->colision(cocodrilo);
 
         if (col1 && !colisionMurcielago)
-            contadorDaño++;
+            contadorDaÃ±o++;
 
         colisionMurcielago = col1;
 
         if (col2 && !colisionCocodrilo)
-            contadorDaño++;
+            contadorDaÃ±o++;
 
         colisionCocodrilo = col2;
 
-        return contadorDaño;
+        return contadorDaÃ±o;
     }
     int Recolectar() {//esto tambien deberia adaptarse al metodo verificarDerrota 
         bool estaColisionandoflor = protagonista->colision(flores);
