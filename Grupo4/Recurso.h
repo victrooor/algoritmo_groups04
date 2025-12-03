@@ -1,5 +1,6 @@
 #pragma once
 #include <String>
+#include "GameManager.h"
 using namespace System;
 using namespace System::Drawing;
 using namespace Windows::Forms;
@@ -13,13 +14,17 @@ private:
 	Random^ selector;
 	int wFrame, hFrame;
 public:
+	bool activo;
+
 	Recurso(int posicionX, int posicionY, String^ r,int columnas, int filas):posicionX(posicionX), posicionY(posicionY),r(r),columnas(columnas),filas(filas) {
+		activo = true;
 		selector = gcnew Random();
 		recursos = gcnew Bitmap(r);
 	}
 	~Recurso() {
 	}
 	void mostrarFlor(Graphics^ gr) {
+		if (!activo) return;
 		escalaFrame = 64;
 		wFrame = recursos->Width / columnas;
 		hFrame = recursos->Height / filas;
@@ -32,5 +37,11 @@ public:
 
 	Rectangle getBoundRecurso() {
 		return Rectangle(posicionX, posicionY, wFrame, hFrame);
+	}
+
+	// ajout pb fleur 
+	void moverA(int nuevaX, int nuevaY) {
+		posicionX = nuevaX;
+		posicionY = nuevaY;
 	}
 }; 
