@@ -153,17 +153,15 @@ public:
         return protagonista->colision(cocodrilo);
     }
 
-    bool colisionFlor(int% indiceColision) {
+    int colisionFlor() {
         for (int i = 0; i < flores->Length; i++) {
             if (flores[i]->activo && protagonista->colision(flores[i])) {
-                indiceColision = i;
-                return true;
+                return i; 
             }
         }
-        return false;
+        return -1; 
     }
 
     
 };
-
 
