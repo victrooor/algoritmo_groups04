@@ -43,8 +43,8 @@ namespace JuegoFinal {
 			mapaActual = fondo1;
 
 			this->ClientSize = System::Drawing::Size(
-				mapaActual->WidthMapa,
-				mapaActual->HeightMapa
+				mapaActual->getWidthMapa(),
+				mapaActual->getHeightMapa()
 			);
 			// ------------------------------------------
 		}
@@ -163,9 +163,10 @@ namespace JuegoFinal {
 		int indiceFlor = mapaActual->colisionFlor();
 
 		if (indiceFlor != -1) {
-			mapaActual->flores[indiceFlor]->activo = false;  
-			gm->Recolectar();        
+			mapaActual->flores[indiceFlor]->activo = false;
+			gm->Recolectar();
 		}
+
 
 
 		lbl_DAÑO->Text = "DAÑO: " + gm->contadorDaño.ToString();
