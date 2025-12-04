@@ -1,84 +1,127 @@
-# Informe del Trabajo final 
-
-## Diagrama de clases 
-
-```mermaid
-
 classDiagram
-    class Mapas {
-        -tipoMundo tipo
-        -tipObjetos objetoTipo
-        -String descripcion
-        -List<Recurso*> recursos
-        -List<Villano*> vilanos
-        -String casa
-        +generarMapa()
-        +colocarRecursos()
-        +colocarVillanos()
-    }
+direction LR
 
-    class Recursos {
-        -int posx
-        -int posy
-        -String formalDelRecurso
-        -bool activo
-        +dibujarRecurso()
-        +estadoActivo()
-        +desaparecer()
-    }
+class Mapa {
+    -x : int
+    -y : int
+    -W : int
+    -H : int
+    -fondo : Bitmap
+    -rutaFondo : String
+    -murcielago : Villano
+    -cocodrilo : Villano
+    -protagonista : PersonajePrincipal
+    -t : System::Windows::Keys
+    -aletorio:Random
+    +ventanaH:int
+    +ventanaW:int
 
-    class Personaje {
-        -int x
-        -int y
-        -String sprite
-        -String nombre
-        +mover(direccion)
-        +dibujar()
-        +borrar()
-        +int getx()
-        +int gety()
-        +getSprint()
-    }
+    +mostrarMapa(Graphics* gr, Keys t) : void
+    +Recolectar() : bool
+    +moverJugador(array<bool>^ teclas) : void
+    +colisionMurcielago() : bool
+    +colisionCocodrilo() : bool
+    +colisionFlor() : bool
+    +getWidthMapa() : int
+    +getHeightMapa() : int
+}
 
-    class Villano {
-        +robar()
-        +moverAleatorio()
-    }
+class Recursos {
+    -posicionX : int
+    -posicionY : int
+    -r : String
+    -recursos : Bitmap
+    -columnas : int
+    -filas : int
+    -escalaFrame : int
+    -selector : Random
+    -wFrame : int
+    -hFrame : int
+    -activo : bool
 
-    class Jugador {
-        -int cantidadDiamante
-        -int cantidadFlores
-        -int cantidadFuenteDeLuz
-        +recoger()
-        +mostrarInventario()
-        +objetino()
-    }
+    +mostrarFlor(Graphics* gr) : void
+    +mostrarDiamante(Graphics* gr) : void
+    +getBoundRecurso() : Rectangle
+    +moverA(int nuevaX, int nuevaY) : void
+}
 
-    class Aliado {
-        +ayuda()
-    }
+class Personaje {
+    -x : int
+    -y : int
+    -indiceH : int
+    -indiceV : int
+    -sprite : string
+    -filas : int
+    -columnas : int
+    -personaje : Bitmap
+    -W : int
+    -H : int
 
-    class GameManager {
-        -tiempoRestante
-        -vista
-        -objetivoagua = 50
-        -objetivopiedra = 50
-        -objetivoRoca = 5
-        +iniciativaNegro
-        +actualizarTiempo()
-        +verificarVictoria()
-        +verificarDerrota()
-    }
+    +mover(Keys t) : void ✓ virtual
+    +seleccionSprite(Graphics^ gr) : void
+}
 
-    Mapas "1" *-- "many" Recursos : contains
-    Mapas "1" *-- "many" Personaje: 
-    Personaje <|-- Jugador : 
-    Jugador --> Recursos : recoger
-    GameManager "3" *--  Mapas : manages
-    GameManager *-- Jugador 
-    Personaje <|-- Villano : inheritance
-    Personaje <|-- Aliado : inheritance
-    Jugador "1" o-- "1" Recursos : contains
-    Menu "1" *-- "1" GameManager : contains
-    Mapas "1" o-- "many" Recursos : contains
-    note for Jugador "El diamante representa aprender,  las flores representan humanidad y las fuentes de luz la estabilidad IA y humano"
+class PersonajePrincipal {
+    +mover(Keys t) : void ✓ override
+    +colision(Villano* otroVillano) : bool
+    +colision(Recurso* otroRecurso) : bool
+}
+
+class Villano {
+    -limiteAlto : int
+    -limiteAncho : int
+    -anchoForm : int
+    -altoForm : int
+    -randomPos : Random
+
+    +getBoundVillano() : Rectangle
+    +moverMurcielago(int anchoEspacio, int altoEspacio) : void ✓ override
+    +moverCocodrilo(int anchoEspacio, int altoEspacio):void ✓ override
+}
+
+class Aliado {
+    +ayudar() : void
+}
+
+class Menu {
+    -titulo : string
+    -opcionSeleccionada : int
+    -gm : GameManager
+
+    +mostrarOpciones() : void
+    +seleccionarOpcion(int opc) : void
+    +iniciarJuego() : void
+    +mostrarInstrucciones() : void
+    +salirJuego() : void
+}
+
+class GameManager {
+    -tiempoRestante : int
+    -vidas : int
+    -objetivoAgua : int = 50
+    -objetivoMadera : int = 50
+    -objetivoRoca : int = 5
+
+    +iniciarJuego() : void
+    +actualizarTiempo() : void
+    +verificarVictoria(int diamante, int flor) : bool
+    +verificarTiempo() : bool
+    +verificarDerrota() : bool
+    +recolectar() : void
+    +verificarDerrota() : bool
+    +DanoCocodrilo(bool murcielago) : bool
+    +getInfo() : string
+}
+
+%% Relaciones
+
+Mapa "1*" *--  Recursos
+PersonajePrincipal "1*" o--  Recursos
+
+Mapa "1*" *-- Personaje
+Personaje <|-- PersonajePrincipal
+Personaje <|-- Villano
+Personaje <|-- Aliado
+
+Menu  *-- GameManager
+GameManager  *-- "3" Mapa
