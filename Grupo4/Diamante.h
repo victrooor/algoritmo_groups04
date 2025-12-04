@@ -10,13 +10,11 @@ private:
 
 public:
 
-    // ===== CONSTRUCTOR =====
     Diamante(int x, int y, String^ ruta)
     {
         img = gcnew Bitmap(ruta);
 
-        // ----------- HACERLO MINI -----------
-        W = img->Width / 20;       // ANTES /10 → AHORA muchísimo más pequeño
+        W = img->Width / 20;   
         H = img->Height / 20;
 
         if (W < 8) W = 8;
@@ -26,12 +24,10 @@ public:
         this->y = y;
     }
 
-    // ===== DIBUJAR =====
     void mostrar(Graphics^ gr) {
         gr->DrawImage(img, x, y, W, H);
     }
 
-    // ===== RECTÁNGULO DE COLISIÓN =====
     Rectangle getRect() {
         return Rectangle(x, y, W, H);
     }
