@@ -115,6 +115,16 @@ classDiagram
         bool DanoCocodrilo(bool murcielago)
         string getInfo()
     }
+    class Diamante{
+        int x
+        int y
+        Bitmap img
+        int W
+        int H
+
+        void mostrar(Graphics gr)
+        Rectangle getRect()
+    }
 
     %% Relaciones
     Mapa "1" *-- "*" Recursos
