@@ -1,6 +1,10 @@
-classDiagram
-direction LR
 
+
+# Informe del Trabajo final 
+
+## Diagrama de clases 
+
+```mermaid
 class Mapa {
     -x : int
     -y : int
